@@ -1,0 +1,308 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  outline: none;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a[href], label[for], select,
+input[type=checkbox], input[type=radio] {
+  cursor: pointer;
+}
+
+button, input[type=button], input[type=image],
+input[type=reset], input[type=submit] {
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+}
+button::-moz-focus-inner,
+input[type=button]::-moz-focus-inner,
+input[type=image]::-moz-focus-inner,
+input[type=reset]::-moz-focus-inner,
+input[type=submit]::-moz-focus-inner {
+  border: 0;
+}
+.hide {
+  position: absolute !important;
+  left: -9999em !important;
+}
+strong {
+  font-weight: bold;
+}
+em {
+  font-style: italic;
+}
+del {
+  text-decoration: line-through;
+}
+th, td {
+  vertical-align: top;
+}
+th {
+  font-weight: normal;
+  text-align: left;
+}
+address, cite, dfn {
+  font-style: normal;
+}
+abbr, acronym {
+  border-bottom: 1px dotted #999;
+  cursor: help;
+}
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+html, body {
+  height: 100%;
+}
+body {
+  font-family: $font-text;
+  font-size: $font-base-size+px;
+  font-weight: 400;
+  color: $dark-blue;
+  background: #fff;
+}
+textarea {
+  overflow: auto;
+}
+input[type=tel], input[type=url], input[type=password], input[type=text], input[type=email], input[type=reset], input[type=button], input[type=submit], button, textarea{
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+input, textarea, select, button {
+  outline: none;
+  font-family: $font-text;
+}
+a {
+  text-decoration: none;
+  color: #d8833d;
+}
+a:hover {
+  text-decoration: underline;
+}
+a, input[type=reset], input[type=button], input[type=submit], button{
+  -webkit-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s;
+}
+input[type=number], input[type=tel], input[type=url], input[type=password], input[type=text], input[type=email], input[type=reset], input[type=button], input[type=submit], button, textarea{
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+input[type=reset], input[type=button], input[type=submit], button{
+  width: 100%;
+  background: #2b9768;
+  border: 0;
+  padding: 5px 20px;
+  font-size: 32px;
+  line-height: 32px;
+  font-weight: 600;
+  color: $white-color;
+  display: inline-block;
+}
+input[type=reset]:hover, input[type=button]:hover, input[type=submit]:hover, button:hover{
+  opacity: 0.9;
+}
+input[type=number], input[type=tel], input[type=url], input[type=password], input[type=text], input[type=email], textarea{
+  background: $white-color;
+  padding: 0 0 0 20px;
+  color: $dark-blue;
+  width: 100%;
+  height: 71px;
+  line-height: 71px;
+  border: 0 none;
+  font-size: 20px;
+  @include breakpoint(tablet-large) {
+    height: 47px;
+    line-height: 47px;
+  }
+}
+textarea {
+  height: 250px;
+  line-height: 24px;
+  padding: 20px 0 0 20px;
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: $dark-blue;
+}
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: $dark-blue;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  visibility: hidden;
+  clear: both;
+  height: 0;
+}
+.el-centered {
+  margin: 0 auto;
+  display: block;
+}
+.el-block {
+  display: block;
+}
+.pull-right {
+  float: right !important;
+}
+.pull-left {
+  float: left !important;
+}
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.no-style {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.text-upper {
+  text-transform: uppercase;
+}
+.el-iblock,
+.inline-boxes {
+  font-family: monospace; 
+  letter-spacing: -.65em; 
+  li,
+  .inline-box {
+    font-family: 'Source Sans Pro', sans-serif;
+    letter-spacing: normal;
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+p {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+  margin: 0 0 10px;
+  color: $dark-blue;
+}
+h1 {
+  font-family: $font-heading;
+  font-size: 65px;
+  line-height: 65px;
+  font-weight: 700;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  color: $white-color;
+  margin: 0 0 15px;
+  @include breakpoint(mobile-large) {
+    font-size: 47px;
+    line-height: 47px;
+  }
+}
+h2 {
+  font-family: $font-heading;
+  font-size: 45px;
+  line-height: 45px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $white-color;
+  margin: 0 0 4px;
+  @include breakpoint(tablet-large) {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
+h3 {
+  font-size: 40px;
+  line-height: 46px;
+  color: $dark-blue;
+  margin: 0 0 5px;
+  @include breakpoint(tablet) {
+    font-size: 28px;
+    line-height: 32px;
+  }
+  @include breakpoint(mobile) {
+    font-size: 23px;
+    line-height: 27px;
+  }
+}
+h4 {
+  font-size: 34px;
+  line-height: 38px;
+  color: $dark-blue;
+  margin: 0 0 5px;
+  @include breakpoint(tablet-large) {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
+.btn-default {
+  display: inline-block;
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 600;
+  color: $white-color;
+  background: #2b9768;
+  padding: 10px 20px;
+}
+.btn-default:hover {
+  background: #1a7d52;
+  text-decoration: none;
+}
+.bgr-style {
+  background-position: top center !important;
+  background-repeat: no-repeat !important;
+  -webkit-background-size: cover !important;
+  background-size: cover !important;
+}

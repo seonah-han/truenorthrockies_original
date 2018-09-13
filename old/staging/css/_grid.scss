@@ -1,0 +1,25 @@
+.grid-tl-nofloat {
+  @include breakpoint(tablet-large) {
+    width: 100% !important;
+    float: none !important;
+  }
+}
+.grid-t-nofloat {
+  @include breakpoint(tablet) {
+    width: 100% !important;
+    float: none !important;
+  }
+}
+.grid-ml-nofloat {
+  @include breakpoint(mobile-large) {
+    width: 100% !important;
+    float: none !important;
+  }
+}
+.grid-m-nofloat {
+  @include breakpoint(mobile) {
+    width: 100% !important;
+    float: none !important;
+  }
+}
+

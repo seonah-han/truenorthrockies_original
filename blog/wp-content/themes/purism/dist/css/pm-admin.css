@@ -1,0 +1,32 @@
+.manage-column.column-post-likes,
+.manage-column.column-post-views {
+	width: 3em;
+}
+
+#pm_dashboard_rss .rss-widget {
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+    padding: 8px 12px 10px
+}
+
+#pm_dashboard_rss .rss-widget:last-child {
+    border-bottom: none;
+    padding-bottom: 8px
+}
+
+#pm_dashboard_rss .rss-widget a {
+    font-weight: 400
+}
+
+#pm_dashboard_rss .rss-widget span.rss-date {
+    margin-left: 12px
+}
+
+#pm_dashboard_rss .rss-widget ul li {
+    margin-bottom: 8px;
+}
+
+.rssSummary img {
+	max-width: 100%;
+	height: auto;
+}

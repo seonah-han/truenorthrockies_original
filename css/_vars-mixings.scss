@@ -1,0 +1,364 @@
+// VARIABLES ---------------------------------------------------------------------------->
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+//  Color variables ------------------------------------------------------------------------>
+$main-color: #359669;
+$blue-color: #042c4d;
+$dark-blue: #2d313b;
+$gray-color: #494949;
+$white-color: #fff;
+
+//  Font variables ------------------------------------------------------------------------>
+$font-text: 'Source Sans Pro', sans-serif;
+$font-heading: 'Roboto Condensed', sans-serif;
+$font-base-size: 20;
+
+//  Sprite -------------------------------------------------------------------------------->
+$spriteURL: "images/sprite.png";
+
+//  Responsive -------------------------------------------------------------------------->
+$layout-mobile-small:           20em;               //320px
+$layout-mobile:                     30em;               //480px
+$layout-mobile-large:            40em;              //640px
+$layout-tablet:                       48em;             //767px
+$layout-tablet-large:              62em;             //992px
+$layout-tablet-landscape:      64.0625em;    //1025px
+$layout-desktop:                    75em;           //1200px
+
+
+
+// MIXINGS ------------------------------------------------------------------------------->
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+// Responsive breakpoints ---------------------------------------------------------------->
+@mixin breakpoint($media) {
+  @if $media == mobile-small {
+    @media only screen and (max-width: $layout-mobile-small) {@content;}
+  }
+  @else if $media == mobile {
+    @media only screen and (max-width: $layout-mobile) {@content;}
+  }
+  @else if $media == mobile-large {
+    @media only screen and (max-width: $layout-mobile-large) {@content;}
+  }
+  @else if $media == tablet {
+    @media only screen and (max-width: $layout-tablet) {@content;}
+  }
+  @else if $media == tablet-large {
+    @media only screen and (max-width: $layout-tablet-large) {@content;}
+  }
+  @else if $media == tablet-landscape {
+    @media only screen and (max-width: $layout-tablet-landscape) {@content;}
+  }
+  @else if $media == desktop {
+    @media only screen and (max-width: $layout-desktop) {@content;}
+  }
+}
+
+// Grid ----------------------------------------------------------------------------------->
+@mixin col($col-number: $grid-cols, $padding: null, $float:null) {
+  width: ((100%/$grid-cols) * $col-number);
+  @if ($float) {
+    float: $float;
+  }
+  @if ($padding) {
+    padding-left: $padding;
+    padding-right: $padding;
+  }
+}
+// move col in next row
+@mixin clear-row($element-number) {
+  &:nth-child(#{$element-number}+1) {
+    clear: left;
+  }
+}
+
+// Border radius -------------------------------------------------------------------------->
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+// Box shadow -------------------------------------------------------------------------->
+@mixin box-shadow($shadow) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  -ms-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+// Transition  -------------------------------------------------------------------------->
+@mixin transition($transition-property: all, $transition-time: 0.3s, $method: ease) {
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition: $transition-property $transition-time $method;
+  -ms-transition: $transition-property $transition-time $method;
+  -o-transition: $transition-property $transition-time $method;
+  transition: $transition-property $transition-time $method;
+}
+
+// Transform -------------------------------------------------------------------------->
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+@mixin translate ($x, $y) {
+  @include transform(translate($x, $y));
+}
+
+// Gradient  -------------------------------------------------------------------------------------------------------->
+@mixin gradient($start-color: #fd842e, $end-color: #d96615, $from: 0, $to: 100%) {
+  background: $start-color;
+  background: -moz-linear-gradient(top,  $start-color $from, $end-color $to);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop($from,$start-color), color-stop($to,$end-color));
+  background: -webkit-linear-gradient(top,  $start-color $from,$end-color $to);
+  background: -o-linear-gradient(top,  $start-color $from,$end-color $to);
+  background: -ms-linear-gradient(top,  $start-color $from,$end-color $to);
+  background: linear-gradient(to bottom,  $start-color $from,$end-color $to);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$start-color}', endColorstr='#{$end-color}',GradientType=0 );
+}
+
+// Button -------------------------------------------------------------------------------------------------------->
+@mixin button($bg: $main-color, $color: $button-text-color, $radius: 10px, $padding: 5px 20px, $display: inline-block, $border: 0 none) {
+  background: $bg;
+  color: $color;
+  padding: $padding;
+  display: $display;
+  border: $border;
+  @if $radius {
+    @include border-radius($radius);
+  }
+}
+// Change CSS  --------------------------------------------------------------------------------------------------->
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content;}
+  &:-moz-placeholder { @content;  }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+}
+// Position -------------------------------------------------------------------------------------------------------->
+@mixin position($position, $top, $left, $right, $bottom) {
+  position: $position;
+  @if $top {
+    top: $top;
+  }
+  @if $left {
+    left: $left;
+  }
+  @if $right {
+    right: $right;
+  }
+  @if $bottom {
+    bottom: $bottom;
+  }
+}
+
+// UL reset ------------------------------------------------------------------------------------------------------>
+@mixin ul-reset($margin: 0, $padding: 0, $list-style: none) {
+  margin: $margin;
+  padding: $padding;
+  list-style: $list-style;
+}
+
+//Cross-browser opacity ---------------------------------------------------------------------------------------->
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// Import Fonts  ------------------------------------------------------------------------------------------------->
+@mixin fontFace($family,$src,$weight: normal,$style: normal) {
+  @font-face {
+    font-family: $family;
+    src: url('#{$src}.eot'); // IE9 compat
+    src: url('#{$src}.eot?#iefix') format('embedded-opentype'), // IE8 and below
+    url('#{$src}.woff') format('woff'), // standards
+    url('#{$src}.ttf') format('truetype'), // Safari, Android, iOS
+    url('#{$src}.svg##{$family}') format('svg'); // legacy iOS
+    font-style: $style;
+    font-weight: $weight;
+  }
+}
+
+//
+// Calculate PX to REM font size
+// $font-base-size is general variable declared, by default we set $size: $font-base-size
+//
+// @param {Number} $size - font size in PX
+//-------------------------------------------------------------------------------------------------------->
+@mixin font-size($size:$font-base-size){
+  font-size:   ($size/$font-base-size) + rem;
+}
+
+
+
+// Create styles for list with inline list-items and separator between them.
+// It's useful when you're creating breadcrumbs, navigations, etc.
+//
+// @param {Number} $spacing - Spacing between list items
+ // @param {String} $divider - Sign used for divider between list items
+ // -------------------------------------------------------------------------------------------------------->
+@mixin divide-list ($spacing: 10px, $divider: "|") {
+  @extend %reset-list;
+  font-size: 0;
+
+  li {
+    font-size: rem($base-font-size);
+    display: inline-block;
+    vertical-align: center;
+
+    &:before {
+      content: $divider;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 $spacing;
+    }
+
+    &:first-child:before {
+      display: none;
+    }
+  }
+}
+
+// Center popup -------------------------------------------------------------------------------------------------------->
+@mixin center-modal($width:300px, $height: 300, $top:50%,$left: 50%) {
+  width: $width;
+  height: $height;
+  top: $top;
+  left: $left;
+  margin-top: -($height/2);
+  margin-left: -($width/2);
+}
+
+// arrows -------------------------------------------------------------------------------------------------------->
+@mixin triangle ($size, $color, $direction) {
+  height: 0;
+  width: 0;
+
+  $width: nth($size, 1);
+  $height: nth($size, length($size));
+
+  $foreground-color: nth($color, 1);
+  $background-color: if(length($color) == 2, nth($color, 2), transparent);
+
+  @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
+
+    $width: $width / 2;
+    $height: if(length($size) > 1, $height, $height/2);
+
+    @if $direction == up {
+      border-left: $width solid $background-color;
+      border-right: $width solid $background-color;
+      border-bottom: $height solid $foreground-color;
+
+    } @else if $direction == right {
+      border-top: $width solid $background-color;
+      border-bottom: $width solid $background-color;
+      border-left: $height solid $foreground-color;
+
+    } @else if $direction == down {
+      border-left: $width solid $background-color;
+      border-right: $width solid $background-color;
+      border-top: $height solid $foreground-color;
+
+    } @else if $direction == left {
+      border-top: $width solid $background-color;
+      border-bottom: $width solid $background-color;
+      border-right: $height solid $foreground-color;
+    }
+  }
+
+  @else if ($direction == up-right) or ($direction == up-left) {
+    border-top: $height solid $foreground-color;
+
+    @if $direction == up-right {
+      border-left:  $width solid $background-color;
+
+    } @else if $direction == up-left {
+      border-right: $width solid $background-color;
+    }
+  }
+
+  @else if ($direction == down-right) or ($direction == down-left) {
+    border-bottom: $height solid $foreground-color;
+
+    @if $direction == down-right {
+      border-left:  $width solid $background-color;
+
+    } @else if $direction == down-left {
+      border-right: $width solid $background-color;
+    }
+  }
+
+  @else if ($direction == inset-up) {
+    border-width: $height $width;
+    border-style: solid;
+    border-color: $background-color $background-color $foreground-color;
+  }
+
+  @else if ($direction == inset-down) {
+    border-width: $height $width;
+    border-style: solid;
+    border-color: $foreground-color $background-color $background-color;
+  }
+
+  @else if ($direction == inset-right) {
+    border-width: $width $height;
+    border-style: solid;
+    border-color: $background-color $background-color $background-color $foreground-color;
+  }
+
+  @else if ($direction == inset-left) {
+    border-width: $width $height;
+    border-style: solid;
+    border-color: $background-color $foreground-color $background-color $background-color;
+  }
+}
+
+
+// FUNCTIONS ---------------------------------------------------------------------------------------------------------->
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// element width calculator --------------------------------------------------------------------------------------------->
+@function cp($target, $container) {
+  @return ($target / $container) * 100%;
+}
+
+// style all inputs at once with fn and variable list ---------------------------------------------------------------------->
+@function assign-inputs($inputs, $pseudo: null) {
+  $list : ();
+
+  @each $input in $inputs {
+    $input: unquote($input);
+    $input: if($pseudo, $input + ":" + $pseudo, $input);
+    $list: append($list, $input, comma);
+  }
+
+  @return $list;
+}
+
+$inputs-list: 'input[type="email"]',
+'input[type="number"]',
+'input[type="password"]',
+'input[type="search"]',
+'input[type="text"]';
+$all-text-inputs: assign-inputs($inputs-list);
+$all-text-inputs-hover: assign-inputs($inputs-list, hover);
+$all-text-inputs-focus: assign-inputs($inputs-list, focus);
+$all-text-inputs-active: assign-inputs($inputs-list, active);
+
+
+// Same thing for buttons
+$inputs-button-list: 'input[type="button"]',
+'input[type="reset"]',
+'input[type="submit"]';
+
+
+$all-button-inputs: assign-inputs($inputs-button-list);
+$all-button-inputs-hover: assign-inputs($inputs-button-list, hover);
+$all-button-inputs-focus: assign-inputs($inputs-button-list, focus);
+$all-button-inputs-active: assign-inputs($inputs-button-list, active);
